@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+    <h:form>
+        <p:panel id="panel" header="New User">
+
+            <p:messages id="msgs" />
+
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="name" value="Name:" />
+                <p:inputText id="name" value="#{editActorView.name}" required="true" label="name">
+                    <f:validator validatorId="actorValidator" />
+                    <p:ajax update="name" event="keyup" />
+                </p:inputText>
+                <p:message for="name" id="msgname" display="icon" />
+
+                <p:outputLabel for="age" value="Age:" />
+                <p:inputText id="age" value="#{editActorView.age}" label="age" required="true">
+                    <f:validateLength minimum="2" />
+                    <p:ajax update="msgage" event="keyup" />
+                </p:inputText>
+                <p:message for="age" id="msgage" display="icon" />
+
+                <p:outputLabel for="movie" value="Movie:" />
+                <p:inputText id="movie" value="#{editActorView.movie}" required="true" label="movie">
+                    <p:ajax update="movie" event="keyup" />
+                </p:inputText>
+                <p:message for="movie" id="msgmovie" display="icon" />
+
+                <p:outputLabel for="country" value="Country:" />
+                <p:inputText id="country" value="#{editActorView.country}" required="true" label="country">
+                    <p:ajax update="country" event="keyup" />
+                </p:inputText>
+                <p:message for="country" id="msgcountry" display="icon" />
+
+            </h:panelGrid>
+
+            <p:commandButton value="Save" update="panel" action="#{editActorView.save}" icon="pi pi-check" />
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+    <style type="text/css">
+        .logo {
+            width: 5%
+        }
+
+        .detail {
+            width: 95%;
+            padding-left: 25px;
+        }
+
+        .detail td {
+            font-size: 24px;
+        }
+
+    </style>
+
+    <h:outputText style="align-content: center; font-weight: bold; font-size: x-large; font-weight: bold;" value="FRIENDS INFORMATION"/>
+    <h:form id="form">
+        <p:repeat value="#{allActorsView.actors}" var="actor">
+            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                <p:graphicImage library="images" width="250px" height="250px" name="#{actor.name.toLowerCase()}.jpg"/>
+
+                <p:outputPanel style="alignment: center;">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Name:"/>
+                        <h:outputText value="#{actor.name}" style="font-weight: bold"/>
+                        <h:outputText value="Age:"/>
+                        <h:outputText value="#{actor.age}" style="font-weight: bold"/>
+                        <h:outputText value="Movie:"/>
+                        <h:outputText value="#{actor.movie}" style="font-weight: bold"/>
+                        <h:outputText value="Country:"/>
+                        <h:outputText value="#{actor.country}" style="font-weight: bold"/>
+
+                    </h:panelGrid>
+                </p:outputPanel>
+                <p:commandButton value="Update Actor" action="#{allActorsView.redirectToEditActor}"
+                                 style="margin-right:20px;">
+                    <f:actionListener binding="#{editActorView.populateView(actor.id)}" />
+                </p:commandButton>
+                <p:commandButton value="Delete Actor" action="#{allActorsView.deleteActor(actor.id)}"
+                                 style="margin-right:20px;"/>
+
+
+            </h:panelGrid>
+            <hr/>
+        </p:repeat>
+        <p:commandButton value="Add Actor" action="#{allActorsView.redirectToEditActor}" style="margin-right:20px; alignment: center;"/>
+    </h:form>
+
+</h:body>
+</html>
